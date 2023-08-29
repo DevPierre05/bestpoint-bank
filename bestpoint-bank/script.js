@@ -52,8 +52,6 @@ let options = {
 };
 let observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    // console.log(entry);
-    // if (entry.isIntersecting === false) headerEl.classList.add('sticky');
     if (!entry.isIntersecting) headerEl.classList.add("sticky");
     else headerEl.classList.remove("sticky");
   });
@@ -69,9 +67,6 @@ let options1 = {
 };
 let navObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    // console.log(entry);
-    // console.log(entry.target);
-    // console.log(entry.target.getAttribute('id'));
     if (entry.isIntersecting && entry.intersectionRatio >= 0) {
       // remove old active class
       document.querySelector(".active").classList.remove("active");
@@ -275,35 +270,8 @@ const section1 = document.querySelector("#section--1");
 
 btnScrollTo.addEventListener("click", function (e) {
   e.preventDefault();
-  //Get cordinates of elements you want to scroll to
-  //from the top of the broswer viewport to the section
-  //it varies depending of where you clicked the button on the viewport
   const s1cords = section1.getBoundingClientRect();
-  console.log(s1cords);
-  //DOMRect {x: 0, y: 468, width: 558, height: 1891.078125, top: 468, …}
-
-  //from the top of the broswer (Apex where you can see) viewport to the button
-  //it varies depending of where you clicked the button on the viewport
-  console.log(e.target.getBoundingClientRect());
-  //DOMRect {x: 234.984375, y: 308, width: 88, height: 23, top: 308, …}
-
-  //Use this to calculate scroll level top from the very top of the browser viewport
-  console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
-  //if untouched after relad, the results should be Current scroll (X/Y), 0, 0
-  //Returns...Current scroll (X/Y) 0 0
-  //If the scrollbar is moved slighly below the learn more button, y value increases
-
   //Knowing Viewport Height and Width
-  console.log(
-    "Height/Width viewport",
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  //Scrolling
-  // window.scrollTo(s1cords.left, s1cords.top + window.pageYOffset)
-
-  console.log(s1cords.top + window.pageYOffset);
 
   window.scrollTo({
     left: s1cords.left + window.scrollX,
@@ -315,9 +283,6 @@ btnScrollTo.addEventListener("click", function (e) {
   section1.scrollIntoView({ behavior: "smooth" });
 });
 
-//Better way to go about this.
-//Target the parent element if all elements have the same parent element
-//Determine what element originated the event.
 document
   .querySelector(".nav__links__link")
   .addEventListener("click", function (e) {
